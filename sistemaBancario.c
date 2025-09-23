@@ -1,17 +1,18 @@
 #include <stdio.h>
+#include<locale.h>
 // Feito por David Barreto
 
-void exibirMenu()
+void exibirMenu() //Função para exibir o Menu
 {
-    printf("------- Sistema BancÃ¡rio -------\n");
+    printf("\n------- Sistema Bancário -------\n\n");
     printf("1 - Consultar Saldo\n");
-    printf("2 - Realizar DepÃ³sito\n");
+    printf("2 - Realizar Depósito\n");
     printf("3 - Realizar Saque\n");
     printf("4 - Sair\n");
-    printf("Selecione a opÃ§Ã£o: ");
+    printf("Selecione a opção: ");
 }
 
-int verificarSenha()
+int verificarSenha() // Função para verificar a senha
 {
     int senha;
     const int senhaCorreta = 2444;
@@ -25,8 +26,8 @@ int verificarSenha()
 
         if (senha == senhaCorreta)
         {
-            printf("Senha correta! Acesso liberado.\n");
-            return 0; // senha correta
+            printf("Senha correta! Acesso liberado.\n\n");
+            return 0; // Se a senha estiver correta o programa segue
         }
         else
         {
@@ -39,13 +40,14 @@ int verificarSenha()
         }
     }
 
-    printf("TransaÃ§Ã£o nÃ£o realizada.\n");
-    printf("NÃºmero mÃ¡ximo de tentativas atingido. Tente novamente mais tarde.\n");
-    return 1; // falhou
+    printf("Transação não realizada.\n");
+    printf("Número máximo de tentativas atingido. Tente novamente mais tarde.\n");
+    return 1; // Se a senha estiver incorreta o programa da erro
 }
 
 int main()
-{
+{   
+    setlocale(LC_ALL,"Portuguese_Brazil");
     int operador;
     float valor;
     float saldo = 2000;
@@ -56,54 +58,55 @@ int main()
         scanf("%d", &operador);
         switch (operador)
         {
-        case 1:
-            if (verificarSenha() == 0) // SÃ³ realiza se a senha estiver correta
+        case 1: // Mostra o saldo da conta
+            if (verificarSenha() == 0) // Só realiza se a senha estiver correta
             {
-                printf("Seu saldo atual Ã©: R$ %.2f\n", saldo);
+                printf("Seu saldo atual é: R$ %.2f\n", saldo);
             }
 
             break;
-        case 2:
-            if (verificarSenha() == 0) // SÃ³ realiza se a senha estiver correta
+        case 2: // Realiza um Depósito
+            if (verificarSenha() == 0) // Só realiza se a senha estiver correta
             {
-                printf("Seu saldo atual Ã©: R$ %.2f\n", saldo);
-                printf("Qual o valor do DÃ©posito?\n");
+                printf("Seu saldo atual é: R$ %.2f\n\n", saldo);
+                printf("Qual o valor do Déposito?\n");
                 scanf("%f", &valor);
                 if (valor > 0)
                 {
                     saldo += valor;
-                    printf("Seu saldo atual Ã©: R$ %.2f\n", saldo);
+                    printf("Seu saldo atual é: R$ %.2f\n\n", saldo);
                 }
-                else
+                else // Caso o valor esteja errado informa ao usuário
                 {
-                    printf("Valor invÃ¡lido");
+                    printf("Valor inválido");
                 }
                 break;
             }
 
             break;
-        case 3:
-            if (verificarSenha() == 0) // SÃ³ realiza se a senha estiver correta
+        case 3: // Realiza um saque
+            if (verificarSenha() == 0) // Só realiza se a senha estiver correta
             {
-                printf("Seu saldo atual Ã©: R$ %.2f\n", saldo);
+                printf("Seu saldo atual é: R$ %.2f\n\n", saldo);
                 printf("Qual o valor do Saque?\n");
                 scanf("%f", &valor);
                 if (valor > 0 && valor <= saldo)
                 {
                     saldo -= valor;
-                    printf("Seu saldo atual Ã©: R$ %.2f\n", saldo);
+                    printf("Seu saldo atual é: R$ %.2f\n", saldo);
                 }
                 else
                 {
-                    printf("Valor invÃ¡lido ou Saldo insuficiente.");
+                    printf("Valor inválido ou Saldo insuficiente.\n");
+                    printf("Tente Novamente!\n");
                 }
                 break;
             }
-        case 4:
+        case 4: // Finaliza o acesso do prograa
             printf("Obrigado por usar nosso sistema!");
              break;
-        default:
-            printf("OpÃ§Ã£o InvÃ¡lida!");
+        default: // Informa ao cliente que a opção é invalida
+            printf("Opção Inválida!");
             break;
         }
 
