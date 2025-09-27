@@ -61,7 +61,7 @@ int main()
         }
     }
 
-    printf("\033[31mDia de Pico: %d\033[0m\n", maior); // Cor vermelha 
+    printf("\033[31mDia de Pico: %d carros\033[0m\n", maior); // Cor vermelha 
     imprimirDia(dia); // Declara qual foi o dia de Pico
 
     return 0;
