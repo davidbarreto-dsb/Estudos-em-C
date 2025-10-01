@@ -1,4 +1,4 @@
-📘 Estudos em C – 1º Semestre
+# 📘 Estudos em C – 1º Semestre
 
 Este repositório reúne meus estudos e práticas da linguagem C durante o primeiro semestre da faculdade.
 O objetivo é registrar minha evolução, desde os primeiros programas básicos até projetos um pouco mais elaborados. 🚀
