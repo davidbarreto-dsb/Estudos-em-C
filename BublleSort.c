@@ -12,16 +12,16 @@ void imprimirVetor(float v[]) {
 }
 
 // Função Bubble Sort
-// crescente = 1 ? ordem crescente
-// crescente = 0 ? ordem decrescente
+// crescente = 1  ordem crescente
+// crescente = 0  ordem decrescente
 void bubbleSort(float v[], int crescente) {
     float temp;
     for (int i = 0; i < TAM - 1; i++) {
         for (int j = 0; j < TAM - 1 - i; j++) {
             if ((crescente && v[j] > v[j + 1]) || (!crescente && v[j] < v[j + 1])) {
-                temp = v[j];
-                v[j] = v[j + 1];
-                v[j + 1] = temp;
+                temp = v[j]; // temp armazena valor original   
+                v[j] = v[j + 1]; // vetor recebe o valor novo no local correto 
+                v[j + 1] = temp; // vetor recebe o valor antigo no lugar onde estava o novo
             }
         }
     }
@@ -32,39 +32,43 @@ int main() {
 
     float valores[TAM];
     int i;
-
-    printf("=====================================\n");
+    int verificaFloat;
+    printf("   ---------------------\n");
     printf("   Bem-vindo ao Organizador de Dados\n");
-    printf("   Método: Bubble Sort (Bolha)\n");
-    printf("=====================================\n\n");
+    printf("   ---------------------\n");
+    
 
     // Entrada dos valores
-    printf("Por favor, digite %d valores numéricos:\n", TAM);
+    printf("Por favor, digite o valor de %d produtos:\n", TAM);
     for (i = 0; i < TAM; i++) {
-        printf("? Valor %d: ", i + 1);
+        printf(" Produto  %d: ", i + 1);
         // Verificação de entrada válida
-        while (scanf("%f", &valores[i]) != 1) {
-            printf("Entrada inválida! Digite um número válido para o valor %d: ", i + 1);
-            // Limpar buffer caso o usuário digite letras
-            while (getchar() != '\n');
+        verificaFloat = scanf("%f", &valores[i]); 
+
+        if (verificaFloat != 1 || valores[i]< 0 ) //Verifica se é um número e se é positivo
+        {
+            printf("Valor inválido, tente novamente!\n");
+            while (getchar() != '\n'); // limpa o buffer do teclado
+            i--; // repete o mesmo produto
+            
         }
     }
 
     // Vetor original
-    printf("\n?? Valores originais:\n");
+    printf("\n Valores originais:\n");
     imprimirVetor(valores);
 
     // Ordem crescente
     bubbleSort(valores, 1);
-    printf("\n??  Valores em ordem crescente:\n");
+    printf("\n  Valores em ordem crescente:\n");
     imprimirVetor(valores);
 
     // Ordem decrescente
     bubbleSort(valores, 0);
-    printf("\n??  Valores em ordem decrescente:\n");
+    printf("\n  Valores em ordem decrescente:\n");
     imprimirVetor(valores);
 
-    printf("\nObrigado por utilizar o programa! ?\n");
+    printf("\nObrigado por utilizar o programa! \n");
 
     return 0;
 }
