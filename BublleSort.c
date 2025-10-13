@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <locale.h>
 
-#define TAM 10  // tamanho do vetor
+#define TAM 10 // tamanho do vetor
 
 // Função para imprimir o vetor
-void imprimirVetor(float v[]) {
-    for (int i = 0; i < TAM; i++) {
+void imprimirVetor(float v[])
+{
+    for (int i = 0; i < TAM; i++)
+    {
         printf("%.2f  ", v[i]);
     }
     printf("\n");
@@ -14,20 +16,25 @@ void imprimirVetor(float v[]) {
 // Função Bubble Sort
 // crescente = 1  ordem crescente
 // crescente = 0  ordem decrescente
-void bubbleSort(float v[], int crescente) {
+void bubbleSort(float v[], int crescente)
+{
     float temp;
-    for (int i = 0; i < TAM - 1; i++) {
-        for (int j = 0; j < TAM - 1 - i; j++) {
-            if ((crescente && v[j] > v[j + 1]) || (!crescente && v[j] < v[j + 1])) {
-                temp = v[j]; // temp armazena valor original   
-                v[j] = v[j + 1]; // vetor recebe o valor novo no local correto 
+    for (int i = 0; i < TAM - 1; i++)
+    {
+        for (int j = 0; j < TAM - 1 - i; j++)
+        {
+            if ((crescente && v[j] > v[j + 1]) || (!crescente && v[j] < v[j + 1]))
+            {
+                temp = v[j];     // temp armazena valor original
+                v[j] = v[j + 1]; // vetor recebe o valor novo no local correto
                 v[j + 1] = temp; // vetor recebe o valor antigo no lugar onde estava o novo
             }
         }
     }
 }
 
-int main() {
+int main()
+{
     setlocale(LC_ALL, "Portuguese_Brazil");
 
     float valores[TAM];
@@ -36,21 +43,21 @@ int main() {
     printf("   ---------------------\n");
     printf("   Bem-vindo ao Organizador de Dados\n");
     printf("   ---------------------\n");
-    
 
     // Entrada dos valores
     printf("Por favor, digite o valor de %d produtos:\n", TAM);
-    for (i = 0; i < TAM; i++) {
+    for (i = 0; i < TAM; i++)
+    {
         printf(" Produto  %d: ", i + 1);
         // Verificação de entrada válida
-        verificaFloat = scanf("%f", &valores[i]); 
+        verificaFloat = scanf("%f", &valores[i]);
 
-        if (verificaFloat != 1 || valores[i]< 0 ) //Verifica se é um número e se é positivo
+        if (verificaFloat != 1 || valores[i] < 0) // Verifica se é um número e se é positivo
         {
             printf("Valor inválido, tente novamente!\n");
-            while (getchar() != '\n'); // limpa o buffer do teclado
-            i--; // repete o mesmo produto
-            
+            while (getchar() != '\n')
+                ; // limpa o buffer do teclado
+            i--;  // repete o mesmo produto
         }
     }
 
